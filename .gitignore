@@ -4,3 +4,4 @@ dist-demo/
 dist-types/
 *.tsbuildinfo
 .env*
+*.tgz

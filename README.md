@@ -63,42 +63,27 @@ references/design-standard.md、references/integration.md 和 docs/sunny-prefere
 
 也可把 `skills/sunny-ui-design` 整个目录复制到你的技能目录。代码与详细参考都在该目录内，复制后仍能使用。
 
-## 看看实际效果
+## 设计示意
 
-以下为 MediaIndex 本地前端的实际截图，使用手册和全局设置页面展示外观，不包含媒体海报。截取页面上半部分，避开本地调试入口。业务内容用于展示层次，复用模块不依赖 MediaIndex 后端。
+以奶霜花园的玫红、青绿与莓红作为主视觉。下面的主视觉是 AI 生成的设计示意，展示配色与立体玻璃的方向，不是运行页面截图。文字、色值和实际样式以源码为准。
 
-### 圆形色盘与 8 种质感
+![奶霜花园：立体玻璃设计主视觉](docs/images/cream-garden-hero.png)
 
-单色和多色分开选择，多色按钟表方向渐变成圆形色盘。质感可与任何配色、明暗模式组合。
+### 十套多色配色
 
-![主题色与多色圆形色盘](docs/images/appearance-picker.jpg)
+从源码读取色值生成的 SVG，总览主色、辅色、点缀与顺时针渐变色盘。放大仍然清晰。更新配色后运行 `python docs/render_showcase.py` 即可重新生成。
 
-![八种质感及马卡龙与 iOS 玻璃组合预览](docs/images/appearance-materials.jpg)
+![十套配色及实际色值](docs/images/palette-reference.svg)
 
-### 马卡龙 × iOS 玻璃
+### 八种质感
 
-薄而透明的表面、清晰亮边与多层背景，适合轻盈的工具界面。
+使用同样的奶霜花园配色和内容比较材质。iOS 玻璃最清透，极光玻璃半透，纸页与瓷面各有不同。此图是材质层次示意，不是浏览器截图。
 
-![MediaIndex 使用手册：马卡龙与 iOS 玻璃](docs/images/mediaindex-guide-macaron-glass.jpg)
+![八种质感层次示意](docs/images/material-reference.svg)
 
-### 北境极光 × 极光玻璃
+### 可运行的玻璃效果
 
-蓝色主调、半透流光与柔和层次。全局设置中的容器和内层卡片一起响应外观选择。
-
-![MediaIndex 全局设置：北境极光与极光玻璃](docs/images/mediaindex-settings-nord-aurora.jpg)
-
-<details>
-<summary>同一手册页面的极光玻璃效果</summary>
-
-![MediaIndex 使用手册：北境极光与极光玻璃](docs/images/mediaindex-guide-nord-aurora.jpg)
-
-</details>
-
-### 蜂蜜麦田 × 纸页档案
-
-暖金主色、纸感底色与细线，适合说明、设置和长内容阅读。
-
-![MediaIndex 使用手册：蜂蜜麦田与纸页档案](docs/images/mediaindex-guide-honey-paper.jpg)
+实际组件已增加方向性高光、亮边、内侧反光和悬浮阴影；背景透入大面板、小卡片与控件。运行本仓库演示，选择「奶霜花园 + iOS 玻璃」即可查看。实际布局和背景由宿主项目决定，主视觉中的三维物体不是组件的一部分。
 
 ## 许可
 

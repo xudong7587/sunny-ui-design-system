@@ -38,6 +38,14 @@ function Toolbar() {
 
 ## 偏好与变量
 
+### 宿主层叠与布局验收
+
+推荐顺序是宿主基础样式、SunnyUI、宿主表面角色映射、宿主布局。布局层不要无条件覆盖所有材质的 `body` 背景、`--material-fill` 或 `--shadow-card`，否则环境光与暖纸底会失效。通用材质只维护在 `assets/appearance/`；宿主只维护自己的颜色约束、组件选择器和布局。
+
+旧样式可能含有 `:last-child` 跨列、移动端隐藏或更高优先级的结构规则。用浏览器实际计算值核对 grid-column、尺寸与间距，特别是条件渲染后最后一个表单面板。必要时给宿主适配增加明确的父级范围，不能用负边距或叠层掩盖交叠。
+
+标题、导航、筛选和提示之间使用正常文档流与明确 gap。小屏下逐页检查长路径、按钮换行和表单堆叠；低矮桌面检查菜单可滚动和收展入口可达。所有回调、状态、偏好存储与 API 保持原合同，视觉适配不代替业务实现。
+
 默认存储键为 `sunny-ui-theme`、`sunny-ui-accent`、`sunny-ui-material`。使用 `configureAppearance` 在挂载前配置独立前缀。同源多个产品避免键冲突。迁移 MediaIndex 偏好时可使用前缀 `mi`。
 
 色彩输出为 `--accent-light/dark`、`--secondary-light/dark`、`--tertiary-light/dark`；明暗通过 `data-theme`，配色通过 `data-accent` 与 `data-palette`，质感通过 `data-material`。未知配色回退蓝色，未知材质回退默认；旧 `blocks` 偏好映射为缎光瓷面。

@@ -2,9 +2,13 @@
 
 一套从 MediaIndex 实际界面中整理出的配色与质感系统。6 个单色、10 套多色、8 种材质与浅深模式可以自由组合，大小卡片、控件与侧栏使用同一套外观规则。
 
-[最新发布：v1.0.2](https://github.com/xudong7587/sunny-ui-design-system/releases/latest) · [设计规范](skills/sunny-ui-design/references/design-standard.md) · [接入说明](skills/sunny-ui-design/references/integration.md) · [AI 设计 Skill](skills/sunny-ui-design/SKILL.md)
+[最新发布：v1.0.3](https://github.com/xudong7587/sunny-ui-design-system/releases/latest) · [设计规范](skills/sunny-ui-design/references/design-standard.md) · [接入说明](skills/sunny-ui-design/references/integration.md) · [AI 设计 Skill](skills/sunny-ui-design/SKILL.md)
 
-## 1.0.2 实际效果
+## 1.0.3 材质更新
+
+这一版将 MediaIndex 实际开发中验证的连续浮雕与八种材质经验收进通用源码：浮雕从同色基底圆润隆起，输入和内层凹陷；玻璃透入背景色光；纸页、极光、双色与缎光保持各自的表面语言。同步补充宿主 CSS 层叠、条件面板跨列和窄屏布局的接入方法。详见 [1.0.3 验证记录](docs/1.0.3-validation.md)。
+
+## 1.0.2 实际效果（历史截图）
 
 这一版完善了「柔软浮雕」：外层面板轻轻凸起，内层卡片和输入框向内凹陷；按钮有按压反馈，选中、禁用、错误和键盘焦点各有清楚的表现。演示页可实际操作筛选、表单和确认弹窗。
 
@@ -70,10 +74,10 @@ pnpm dev
 
 ## 带到其他项目
 
-v1.0.2 提供两种下载：
+v1.0.3 提供两种下载：
 
-- [React 组件包（.tgz）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.2/xudong7587-sunny-ui-design-system-1.0.2.tgz)：包含 ESM 组件、CSS、TypeScript 类型和 skill。
-- [AI 设计 Skill（.zip）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.2/sunny-ui-design-skill-1.0.2.zip)：包含设计规范、接入说明与可复用外观源码。
+- [React 组件包（.tgz）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.3/xudong7587-sunny-ui-design-system-1.0.3.tgz)：包含 ESM 组件、CSS、TypeScript 类型和 skill。
+- [AI 设计 Skill（.zip）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.3/sunny-ui-design-skill-1.0.3.zip)：包含设计规范、接入说明与可复用外观源码。
 
 最快的方式是复制 [`skills/sunny-ui-design/assets/appearance`](skills/sunny-ui-design/assets/appearance)，导入组件和 CSS。接入步骤见 [集成说明](skills/sunny-ui-design/references/integration.md)。本仓库也提供 ESM 库构建和 TypeScript 类型，可以通过 Git 依赖或打包文件使用，尚未发布到 npm。
 

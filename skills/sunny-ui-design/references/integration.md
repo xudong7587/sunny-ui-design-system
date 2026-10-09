@@ -28,6 +28,12 @@ function Toolbar() {
 
 已有项目不方便加类时，在单独适配文件中映射到相同变量。不要复制宿主业务 API 或把选项写入后端配置。
 
+### 柔软浮雕接入
+
+选择 `soft` 后，`.appearance-surface` / `.appearance-sidebar` / `.appearance-dialog` 为凸起外层，`.appearance-surface-inner` 为凹陷内层，`.appearance-control` 为控件。输入框、select、textarea自动采用凹陷阴影；按钮按压及 `aria-pressed="true"` 表达凹陷，焦点仍有独立实色轮廓。错误控件应设置 `aria-invalid="true"` 并用 `aria-describedby` 关联错误文字；业务成功、警告、错误用自己的状态样式。
+
+宿主需要调整大小时可覆盖 `--soft-raised-shadow`、`--soft-recessed-shadow`、`--soft-control-shadow`、`--material-radius`；不要修改模块里的业务无关选择器，也不要另维护一份材质代码。复制源码时一并复制规范，保持 `soft` ID 和已保存偏好。
+
 样式包含基础 `:root` 和 `body` 材质设置，会影响全站。适合全站外观选择；嵌入第三方页面时需把变量和选择器作用域改成容器，不能直接使用全局版本。
 
 ## 偏好与变量

@@ -1,40 +1,63 @@
 # Sunny UI Design System
 
-一套从 MediaIndex 实际界面中整理出的配色与质感系统。用 6 个单色、10 套多色、8 种材质和浅深模式自由组合，大小卡片、控件与侧栏一起变化。
+一套从 MediaIndex 实际界面中整理出的配色与质感系统。6 个单色、10 套多色、8 种材质与浅深模式可以自由组合，大小卡片、控件与侧栏使用同一套外观规则。
 
-这是可运行的前端代码，也是一份给设计者和 AI 使用的参考。界面质量还需要结合实际内容与布局验收。
+[最新发布：v1.0.2](https://github.com/xudong7587/sunny-ui-design-system/releases/latest) · [设计规范](skills/sunny-ui-design/references/design-standard.md) · [接入说明](skills/sunny-ui-design/references/integration.md) · [AI 设计 Skill](skills/sunny-ui-design/SKILL.md)
 
-**1.0.2：柔软浮雕标准更新。** 外层凸起、内层凹陷、主辅色轻染与深色柔光已沉淀到共享令牌；输入、选中、按压、禁用、错误与焦点都有对应表现。演示页包含实际可操作的筛选、表单、表格和确认弹窗。切换「柔软浮雕」即可检查；不需要复制 MediaIndex 的业务布局。详情见 [设计规范](skills/sunny-ui-design/references/design-standard.md)。
+## 1.0.2 实际效果
 
-## 设计示意
+这一版完善了「柔软浮雕」：外层面板轻轻凸起，内层卡片和输入框向内凹陷；按钮有按压反馈，选中、禁用、错误和键盘焦点各有清楚的表现。演示页可实际操作筛选、表单和确认弹窗。
 
-以奶霜花园的玫红、青绿与莓红作为主视觉。下面的主视觉是 AI 生成的设计示意，展示配色与立体玻璃的方向，不是运行页面截图。文字、色值和实际样式以源码为准。
+下面是 1.0.2 演示页的浏览器截图，使用「奶霜花园 × 柔软浮雕」。桌面预览按明暗偏好显示相应截图。
 
-![奶霜花园：立体玻璃设计主视觉](docs/images/cream-garden-hero.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/soft-desktop-dark.jpg">
+  <img src="docs/images/soft-desktop-light.jpg" alt="Sunny UI 1.0.2 桌面实际效果：奶霜花园配色、柔软浮雕面板、凹陷卡片与表单控件">
+</picture>
+
+<details>
+<summary>查看深色桌面与手机完整截图</summary>
+
+### 深色桌面
+
+深色模式收敛高光，保留面板与内层卡片的明暗差异。
+
+![1.0.2 柔软浮雕深色桌面实际截图](docs/images/soft-desktop-dark.jpg)
+
+### 手机布局
+
+窄屏改用单列，长名称自然换行，表单与操作区依次排列。
+
+<img src="docs/images/soft-mobile-dark.jpg" alt="1.0.2 柔软浮雕手机深色实际截图，展示单列表单、筛选和长名称记录" width="304">
+
+</details>
+
+复现这些效果：运行本仓库演示，打开右上角「外观设置」，选择奶霜花园配色和柔软浮雕材质，再切换浅深模式。具体检查项与验证边界见 [1.0.2 验证记录](docs/1.0.2-validation.md)；接入其他产品后，仍需结合实际内容和布局验收。
+
+## 配色与材质参考
 
 ### 十套多色配色
 
-从源码读取色值生成的 SVG，总览主色、辅色、点缀与顺时针渐变色盘。放大仍然清晰。更新配色后运行 `python docs/render_showcase.py` 即可重新生成。
+下图从源码色值生成，展示主色、辅色、点缀与顺时针渐变色盘。更新配色后运行 `python docs/render_showcase.py` 可重新生成。
 
 ![十套配色及实际色值](docs/images/palette-reference.svg)
 
 ### 八种质感
 
-使用同样的奶霜花园配色和内容比较材质。iOS 玻璃最清透，极光玻璃半透，纸页与瓷面各有不同。此图是材质层次示意，不是浏览器截图。
+使用同样的奶霜花园配色和内容比较材质。iOS 玻璃更清透，极光玻璃半透，纸页与瓷面各有不同。下图为材质层次示意，实际组件效果可在演示中切换查看。
 
 ![八种质感层次示意](docs/images/material-reference.svg)
 
-### 可运行的玻璃效果
+<details>
+<summary>查看早期立体玻璃设计示意</summary>
 
-实际组件已增加方向性高光、亮边、内侧反光和悬浮阴影；背景透入大面板、小卡片与控件。运行本仓库演示，选择「奶霜花园 + iOS 玻璃」即可查看。实际布局和背景由宿主项目决定，主视觉中的三维物体不是组件的一部分。
+这张 AI 生成的主视觉展示奶霜花园配色与立体玻璃的设计方向。图中的三维物体属于示意内容；可复用组件、文字和色值以源码及上方实际截图为准。
 
-### 柔软浮雕实测
+![奶霜花园立体玻璃设计示意，AI 生成](docs/images/cream-garden-hero.png)
 
-以下为 1.0.2 演示页的实际浏览器截图，使用奶霜花园配色。外层浮起、内层压入，浅深模式使用不同的光影重量；详细验收范围见 [1.0.2 验证记录](docs/1.0.2-validation.md)。
+运行演示并选择「奶霜花园 + iOS 玻璃」，可查看组件的方向性高光、亮边、内侧反光和悬浮阴影。实际背景和布局由接入项目决定。
 
-![柔软浮雕浅色实际演示](docs/images/soft-desktop-light.jpg)
-
-![柔软浮雕深色实际演示](docs/images/soft-desktop-dark.jpg)
+</details>
 
 ## 运行示例
 
@@ -46,6 +69,11 @@ pnpm dev
 打开终端显示的本地地址，点击右上角外观按钮。`pnpm build` 会构建可复用库和独立演示网站；`pnpm preview` 预览演示构建。
 
 ## 带到其他项目
+
+v1.0.2 提供两种下载：
+
+- [React 组件包（.tgz）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.2/xudong7587-sunny-ui-design-system-1.0.2.tgz)：包含 ESM 组件、CSS、TypeScript 类型和 skill。
+- [AI 设计 Skill（.zip）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.2/sunny-ui-design-skill-1.0.2.zip)：包含设计规范、接入说明与可复用外观源码。
 
 最快的方式是复制 [`skills/sunny-ui-design/assets/appearance`](skills/sunny-ui-design/assets/appearance)，导入组件和 CSS。接入步骤见 [集成说明](skills/sunny-ui-design/references/integration.md)。本仓库也提供 ESM 库构建和 TypeScript 类型，可以通过 Git 依赖或打包文件使用，尚未发布到 npm。
 

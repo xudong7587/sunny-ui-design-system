@@ -23,6 +23,12 @@
 
 下图是指定 HTML 在浏览器中的实际静态预览，展示宿主布局，并非组件库自带的业务功能。海报、主视觉画面及缩略图区域（包括占位海报）已做 **24px 高斯模糊**；原始设计文件未修改，只保存处理后的截图。
 
+### 外观面板 · 16 种材质
+
+从新版设计稿直接截取弹出的外观面板，完整展示明暗、圆角、16 种材质和全部配色色盘。截图以 3 倍像素密度保存，尺寸为 1080 × 2395；画面中不含影视海报。
+
+<a href="docs/images/mediaindex-2.0-appearance-hd.png"><img src="docs/images/mediaindex-2.0-appearance-hd.png" width="360" alt="MediaIndex 外观面板高清截图，完整展示 16 种材质和配色选项"></a>
+
 ### 柔软浮雕 × 奶霜花园 · 发现
 
 ![MediaIndex 发现页，海报和主视觉画面已高斯模糊](docs/images/mediaindex-2.0-discover.png)

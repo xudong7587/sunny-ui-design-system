@@ -5,3 +5,4 @@ dist-types/
 *.tsbuildinfo
 .env*
 *.tgz
+*.zip

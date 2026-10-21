@@ -1,57 +1,58 @@
-# 接入说明
+# Sunny UI 2.0 接入说明
 
-## 复制源码
+## 文件与职责
 
-安装宿主项目依赖 `react`、`@phosphor-icons/react`，复制 `assets/appearance/` 目录。将 CSS 导入放在宿主基础样式之后，并将项目特有适配放在外观样式之后。
+完整复制 assets/appearance/：preview.css 是原稿全部样式，presets.ts 是生成的预设，appearance.css 仅适配原生 popover 位置，AppearancePicker.tsx 负责 React 行为。安装 react、react-dom 和 @phosphor-icons/react。
 
 ```tsx
 import { AppearancePicker, configureAppearance, useAppearanceTheme } from "./appearance/AppearancePicker";
 import "./appearance/appearance.css";
-configureAppearance({ storagePrefix: "my-project" }); // 在 React 挂载前调用一次
+configureAppearance({ storagePrefix: "my-app" });
 function Toolbar() {
   const [theme, setTheme] = useAppearanceTheme();
   return <AppearancePicker theme={theme} onThemeChange={() => setTheme(theme === "light" ? "dark" : "light")} />;
 }
 ```
 
-也可在构建仓库后，用 `pnpm pack` 创建包，安装到其他项目。导入 `@xudong7587/sunny-ui-design-system` 的组件，并显式导入 `@xudong7587/sunny-ui-design-system/styles.css`。包尚未发布到 npm。代码使用 React hooks，SSR 框架中从客户端组件接入；服务端不读取浏览器偏好。
+configureAppearance 在 React 挂载前调用。SSR 框架中组件放客户端入口。构建包导入 @xudong7587/sunny-ui-design-system，并显式导入同包 /styles.css。
 
-## 表面适配
+## 样式范围
+
+原始 CSS 包含 body、button、h1、table.tbl 及 app / panel 等全局类，适合全站接入。不要在现有宿主中盲目追加：先检查类名冲突、字体和层叠，再按原稿组件结构映射。不允许为了维持旧 Sunny UI 视觉而补回旧样式。业务内容和布局扩展放宿主文件，色彩、材质、阴影和圆角以原稿为准。
 
 ```tsx
-<section className="appearance-surface">
-  <article className="appearance-surface-inner">小卡片</article>
-  <input className="appearance-control" aria-label="名称" />
+<section className="panel panel-pad">
+  <header className="panel-head"><div><h2>标题</h2><small>说明</small></div></header>
+  <article className="entry-card">内层内容</article>
+  <label className="field">名称<input className="input" /></label>
+  <button className="btn primary">保存</button>
 </section>
-<aside className="appearance-sidebar">导航</aside>
 ```
 
-已有项目不方便加类时，在单独适配文件中映射到相同变量。不要复制宿主业务 API 或把选项写入后端配置。
+## 四维与持久化
 
-### 柔软浮雕接入
+DOM：data-theme / data-material / data-color / data-corner。存储键：<prefix>-theme/material/color/corner；默认前缀 sunny-ui。默认 light / soft / blue / default。旧 accent 存储键仅作为 color 缺失时的回退；旧材质 default → clear、blocks → satin。未知项分别回退 light / soft / blue / default。
 
-选择 `soft` 后，`.appearance-surface` / `.appearance-sidebar` / `.appearance-dialog` 为凸起外层，`.appearance-surface-inner` 为凹陷内层，`.appearance-control` 为控件。输入框、select、textarea自动采用凹陷阴影；按钮按压及 `aria-pressed="true"` 表达凹陷，焦点仍有独立实色轮廓。错误控件应设置 `aria-invalid="true"` 并用 `aria-describedby` 关联错误文字；业务成功、警告、错误用自己的状态样式。
+选择即时写 DOM 并通过事件同步同页实例，storage 事件同步同源标签页。存储被禁止时只保证当前标签会话选择，无法刷新恢复。theme hook 的 setter 接收 Theme 值；外观 UI 由 onThemeChange 回调同步。
 
-宿主需要调整大小时可覆盖 `--soft-raised-shadow`、`--soft-recessed-shadow`、`--soft-control-shadow`、`--material-radius`；不要修改模块里的业务无关选择器，也不要另维护一份材质代码。复制源码时一并复制规范，保持 `soft` ID 和已保存偏好。
+## 1.x 迁移：视觉不保留
 
-样式包含基础 `:root` 和 `body` 材质设置，会影响全站。适合全站外观选择；嵌入第三方页面时需把变量和选择器作用域改成容器，不能直接使用全局版本。
+| 原入口 | 2.0 对应 |
+| --- | --- |
+| .appearance-surface | .panel；根据内容加 .panel-pad |
+| .appearance-surface-inner | 根据内容选 .entry-card / .step-card 等，不再有统一内层材质 |
+| .appearance-control | 输入用 .input，按钮用 .mini-btn / .btn，图标用 .icon-btn |
+| .appearance-sidebar | .sidebar（含原稿布局） |
+| .appearance-dialog | 业务弹窗用 .task-dialog / dialog.detail；外观由组件负责 |
+| --material-fill / edge / blur | --mat-fill / edge / blur |
+| --shadow-card | --mat-shadow |
+| --material-control / control-shadow | --mat-control / control-shadow |
+| data-accent | data-color |
 
-## 偏好与变量
+导出 materials / single / multi / corners 来自原稿；accents 是 single 与 multi 的联合，多色 light/dark 是三元组，单色是色值字符串。Material 正式 ID 为 clear，旧 default 只在读存储时兼容。新增 Corner / Color / Material 类型。默认主题材质改为 soft，圆润比例 1.9。
 
-### 宿主层叠与布局验收
+原生 popover 需要支持该 API 的现代浏览器。面板支持原生外部点击和 Esc 关闭；移动端遵循原稿底部浮层。它不使用模态焦点陷阱，Tab 按页面顺序操作。业务确认弹窗使用原生 dialog，按宿主行为处理。
 
-推荐顺序是宿主基础样式、SunnyUI、宿主表面角色映射、宿主布局。布局层不要无条件覆盖所有材质的 `body` 背景、`--material-fill` 或 `--shadow-card`，否则环境光与暖纸底会失效。通用材质只维护在 `assets/appearance/`；宿主只维护自己的颜色约束、组件选择器和布局。
+## 更新设计来源
 
-旧样式可能含有 `:last-child` 跨列、移动端隐藏或更高优先级的结构规则。用浏览器实际计算值核对 grid-column、尺寸与间距，特别是条件渲染后最后一个表单面板。必要时给宿主适配增加明确的父级范围，不能用负边距或叠层掩盖交叠。
-
-标题、导航、筛选和提示之间使用正常文档流与明确 gap。小屏下逐页检查长路径、按钮换行和表单堆叠；低矮桌面检查菜单可滚动和收展入口可达。所有回调、状态、偏好存储与 API 保持原合同，视觉适配不代替业务实现。
-
-默认存储键为 `sunny-ui-theme`、`sunny-ui-accent`、`sunny-ui-material`。使用 `configureAppearance` 在挂载前配置独立前缀。同源多个产品避免键冲突。迁移 MediaIndex 偏好时可使用前缀 `mi`。
-
-色彩输出为 `--accent-light/dark`、`--secondary-light/dark`、`--tertiary-light/dark`；明暗通过 `data-theme`，配色通过 `data-accent` 与 `data-palette`，质感通过 `data-material`。未知配色回退蓝色，未知材质回退默认；旧 `blocks` 偏好映射为缎光瓷面。
-
-浏览器存储不可用时仍可在当前会话选择，无法承诺刷新保留。跨标签 storage 事件同步选择；组件使用独立 dialog 标题 ID。多个实例同页的同步尚未作为公开合同验证，建议每个应用提供一个主要外观入口。
-
-## 增加预设
-
-配色在 `accents` 中增加一项；多色同时提供浅深主色、辅色与点缀。材质在 `materials` 中增加一项，并在 CSS 中定义外层、内层、控件权重和小预览。更新文案、示例和验收结果，再发布。不要仅为选项换名字而保留几乎一样的视觉。
+仓库中运行 node docs/import-preview.cjs <已确认的HTML路径> 重新生成 preview.css、presets.ts 与来源指纹。导入只执行预设数组字面量，不执行 HTML 的业务脚本。运行类型检查、构建和浏览器一致性检查后再交付。不要根据旧规范修改生成文件。

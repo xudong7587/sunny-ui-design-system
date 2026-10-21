@@ -1,0 +1,32 @@
+[
+  {
+    "file": "mediaindex-2.0-discover.png",
+    "route": "discover",
+    "theme": "light",
+    "material": "soft",
+    "color": "catppuccin",
+    "corner": "default",
+    "gaussianBlurPx": 24,
+    "redactedElements": 40
+  },
+  {
+    "file": "mediaindex-2.0-workspace.png",
+    "route": "workspace",
+    "theme": "dark",
+    "material": "metal",
+    "color": "nord",
+    "corner": "default",
+    "gaussianBlurPx": 24,
+    "redactedElements": 40
+  },
+  {
+    "file": "mediaindex-2.0-system.png",
+    "route": "system",
+    "theme": "light",
+    "material": "glass",
+    "color": "macaron",
+    "corner": "default",
+    "gaussianBlurPx": 24,
+    "redactedElements": 40
+  }
+]

@@ -1,132 +1,93 @@
-# Sunny UI Design System
+# Sunny UI · 2.0.0
 
-一套从 MediaIndex 实际界面中整理出的配色与质感系统。6 个单色、10 套多色、8 种材质与浅深模式可以自由组合，大小卡片、控件与侧栏使用同一套外观规则。
+**以 MediaIndex 新设计稿为唯一视觉基准的设计系统。** 旧设计规范与外观样式已弃用。16 种质感、10 个单色、16 组多色、浅深模式和 3 档圆角，全部来自用户指定的 `MediaIndex-UI-Preview/index.html`。
 
-[最新发布：v1.0.3](https://github.com/xudong7587/sunny-ui-design-system/releases/latest) · [设计规范](skills/sunny-ui-design/references/design-standard.md) · [接入说明](skills/sunny-ui-design/references/integration.md) · [AI 设计 Skill](skills/sunny-ui-design/SKILL.md)
+[设计规范](skills/sunny-ui-design/references/design-standard.md) · [接入说明](skills/sunny-ui-design/references/integration.md) · [AI 设计 Skill](skills/sunny-ui-design/SKILL.md) · [验证记录](docs/2.0.0-validation.md) · [版本变化](CHANGELOG.md)
 
-## 1.0.3 材质更新
+[下载 v2.0.0 安装包](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v2.0.0/xudong7587-sunny-ui-design-system-2.0.0.tgz) · [下载 v2.0.0 设计 Skill](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v2.0.0/sunny-ui-design-skill-2.0.0.zip)
 
-这一版将 MediaIndex 实际开发中验证的连续浮雕与八种材质经验收进通用源码：浮雕从同色基底圆润隆起，输入和内层凹陷；玻璃透入背景色光；纸页、极光、双色与缎光保持各自的表面语言。同步补充宿主 CSS 层叠、条件面板跨列和窄屏布局的接入方法。详见 [1.0.3 验证记录](docs/1.0.3-validation.md)。
+## 新设计规范
 
-## 1.0.2 实际效果（历史截图）
+| 维度 | 设计稿中的规则 |
+| --- | --- |
+| 明暗 | light / dark，独立保存；背景、文字、状态色与光影各有定义 |
+| 材质 | 页面环境、侧栏、顶栏、面板、控件、输入与选中态共同变化 |
+| 配色 | 主色、辅色、点缀分别参与操作、环境光和装饰；单色也保留设计稿的辅助色 |
+| 圆角 | tight / default / round，系数 0.42 / 1 / 1.9，按各组件原始公式应用 |
 
-这一版完善了「柔软浮雕」：外层面板轻轻凸起，内层卡片和输入框向内凹陷；按钮有按压反馈，选中、禁用、错误和键盘焦点各有清楚的表现。演示页可实际操作筛选、表单和确认弹窗。
+浮雕采用连续基底与凹凸光影；玻璃区分清透、雾面与极光；金属保留拉丝和硬高光；纸张、织物、陶土、石材分别拥有自身的纹理。**不再用旧版“外层凸起、内层必须凹陷”等统一规则覆盖设计稿。** 内层卡片与输入按各自原始样式呈现。
 
-下面是 1.0.2 演示页的浏览器截图，使用「奶霜花园 × 柔软浮雕」。桌面预览按明暗偏好显示相应截图。
+页面以稳定外壳、标题与主操作、概览指标、分区导航、内容模块组成。面板标题内边距统一，同排卡片拉伸等高。任务详情按分组展开；窄屏改为抽屉导航与单列内容，表格在容器内滚动。
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/images/soft-desktop-dark.jpg">
-  <img src="docs/images/soft-desktop-light.jpg" alt="Sunny UI 1.0.2 桌面实际效果：奶霜花园配色、柔软浮雕面板、凹陷卡片与表单控件">
-</picture>
+## MediaIndex 新设计截图
 
-<details>
-<summary>查看深色桌面与手机完整截图</summary>
+下图是指定 HTML 在浏览器中的实际静态预览，展示宿主布局，并非组件库自带的业务功能。海报、主视觉画面及缩略图区域（包括占位海报）已做 **24px 高斯模糊**；原始设计文件未修改，只保存处理后的截图。
 
-### 深色桌面
+### 柔软浮雕 × 奶霜花园 · 发现
 
-深色模式收敛高光，保留面板与内层卡片的明暗差异。
+![MediaIndex 发现页，海报和主视觉画面已高斯模糊](docs/images/mediaindex-2.0-discover.png)
 
-![1.0.2 柔软浮雕深色桌面实际截图](docs/images/soft-desktop-dark.jpg)
+### 拉丝金属 × 北境极光 · 工作台
 
-### 手机布局
+![MediaIndex 工作台，深色拉丝金属](docs/images/mediaindex-2.0-workspace.png)
 
-窄屏改用单列，长名称自然换行，表单与操作区依次排列。
+### iOS 玻璃 × 马卡龙 · 全局设置
 
-<img src="docs/images/soft-mobile-dark.jpg" alt="1.0.2 柔软浮雕手机深色实际截图，展示单列表单、筛选和长名称记录" width="304">
+![MediaIndex 全局设置，浅色玻璃](docs/images/mediaindex-2.0-system.png)
 
-</details>
+截图参数见 [记录](docs/images/mediaindex-2.0-captures.json)。重拍脚本为 `docs/capture-preview.cjs`，需可加载的 Playwright 和本机 Edge，传入原 HTML 路径即可。
 
-复现这些效果：运行本仓库演示，打开右上角「外观设置」，选择奶霜花园配色和柔软浮雕材质，再切换浅深模式。具体检查项与验证边界见 [1.0.2 验证记录](docs/1.0.2-validation.md)；接入其他产品后，仍需结合实际内容和布局验收。
+## 完整预设
 
-## 配色与材质参考
+| 类别 | 选项 |
+| --- | --- |
+| 材质 16 | 柔软浮雕、清晰默认、纸页档案、亚麻织纹、iOS 玻璃、雾面玻璃、极光玻璃、双色渐层、缎光瓷面、精致描边、拉丝金属、陶土哑光、大理石、霓虹暗夜、纸片拼贴、雾面色场 |
+| 单色 10 | 晴蓝、青瓷、松绿、鸢紫、莓红、砖窑、琥珀、芥末、靛蓝、石墨 |
+| 多色 16 | 奶霜花园、北境极光、鸢尾暮色、深海鎏金、海盐日落、暮色熔岩、马卡龙、薄荷雪松、蜜桃乌龙、蓝调花雾、海雾晨光、雨后花园、蜂蜜麦田、沙漠绿洲、红茶玫瑰、紫罗兰夜 |
 
-### 十套多色配色
-
-下图从源码色值生成，展示主色、辅色、点缀与顺时针渐变色盘。更新配色后运行 `python docs/render_showcase.py` 可重新生成。
-
-![十套配色及实际色值](docs/images/palette-reference.svg)
-
-### 八种质感
-
-使用同样的奶霜花园配色和内容比较材质。iOS 玻璃更清透，极光玻璃半透，纸页与瓷面各有不同。下图为材质层次示意，实际组件效果可在演示中切换查看。
-
-![八种质感层次示意](docs/images/material-reference.svg)
-
-<details>
-<summary>查看早期立体玻璃设计示意</summary>
-
-这张 AI 生成的主视觉展示奶霜花园配色与立体玻璃的设计方向。图中的三维物体属于示意内容；可复用组件、文字和色值以源码及上方实际截图为准。
-
-![奶霜花园立体玻璃设计示意，AI 生成](docs/images/cream-garden-hero.png)
-
-运行演示并选择「奶霜花园 + iOS 玻璃」，可查看组件的方向性高光、亮边、内侧反光和悬浮阴影。实际背景和布局由接入项目决定。
-
-</details>
-
-## 运行示例
+## 运行与接入
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
+pnpm typecheck
+pnpm build
 ```
 
-打开终端显示的本地地址，点击右上角外观按钮。`pnpm build` 会构建可复用库和独立演示网站；`pnpm preview` 预览演示构建。
+打开终端给出的本地地址，在右上角“外观”切换四个维度。`pnpm build` 生成 ESM 库、类型及独立演示网站；`pnpm preview` 预览构建，`pnpm pack` 可创建本地安装包。GitHub Release 提供安装包和设计 Skill；此包尚未发布到 npm。
 
-## 带到其他项目
+复制 `skills/sunny-ui-design/assets/appearance/` 整个目录，或使用构建包：
 
-v1.0.3 提供两种下载：
+```tsx
+import { AppearancePicker, configureAppearance, useAppearanceTheme } from "./appearance/AppearancePicker";
+import "./appearance/appearance.css";
+configureAppearance({ storagePrefix: "my-app" });
+function Toolbar() {
+  const [theme, setTheme] = useAppearanceTheme();
+  return <AppearancePicker theme={theme} onThemeChange={() => setTheme(theme === "light" ? "dark" : "light")} />;
+}
+```
 
-- [React 组件包（.tgz）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.3/xudong7587-sunny-ui-design-system-1.0.3.tgz)：包含 ESM 组件、CSS、TypeScript 类型和 skill。
-- [AI 设计 Skill（.zip）](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v1.0.3/sunny-ui-design-skill-1.0.3.zip)：包含设计规范、接入说明与可复用外观源码。
+2.0 使用设计稿原始类名 `.panel`、`.entry-card`、`.input`、`.btn`、`.sidebar` 等；旧版 `.appearance-surface` 和 `--material-*` 不再定义。完整迁移映射见 [接入说明](skills/sunny-ui-design/references/integration.md)。原始 CSS 为全站样式，接入时需审查宿主类名冲突。
 
-最快的方式是复制 [`skills/sunny-ui-design/assets/appearance`](skills/sunny-ui-design/assets/appearance)，导入组件和 CSS。接入步骤见 [集成说明](skills/sunny-ui-design/references/integration.md)。本仓库也提供 ESM 库构建和 TypeScript 类型，可以通过 Git 依赖或打包文件使用，尚未发布到 npm。
+## 唯一设计来源
 
-- [设计规范](skills/sunny-ui-design/references/design-standard.md)：字体、布局、色彩、材质、交互和响应式规则。
-- [Sunny 的常用标准](docs/sunny-preferences.md)：用于其他项目时要保留的设计偏好和适用范围。
-- [AI 设计 Skill](skills/sunny-ui-design/SKILL.md)：读取后按规范完成界面或接入外观系统。
-- [来源与许可](docs/sources.md)：代码出处、参考项目与第三方技能。
+`preview.css` 是指定 HTML 的完整 style 内容，逐字提取，`presets.ts` 是其中的材质、配色与圆角目录。React 只负责选择、保存、同步与弹层开关，不另造视觉规则。
 
-## 让 AI 参考
+[来源指纹](docs/design-source.json) 记录输入与 CSS 的 SHA-256。更新已确认设计稿后运行：
 
-下面两段可以直接复制给能读取 GitHub 仓库或本地文件的 AI。只给仓库链接也能表达方向，但同时指定阅读顺序、接入范围和验收要求，更容易复现效果。如果 AI 无法访问 GitHub，先下载仓库，再把本地目录提供给它。
+```sh
+node docs/import-preview.cjs /path/to/MediaIndex-UI-Preview/index.html
+```
 
-### 直接给项目增加主题系统
+## 交给 AI
 
 ```text
-根据 https://github.com/xudong7587/sunny-ui-design-system 项目，给当前前端增加可复用的主题系统。
-
-先读取该仓库的 README.md、AGENTS.md、skills/sunny-ui-design/SKILL.md、
-references/design-standard.md、references/integration.md 和 docs/sunny-preferences.md
-（references 位于 skills/sunny-ui-design 下），再了解当前项目的技术栈和页面结构。
-
-优先复用 assets/appearance 中的组件、配色和 CSS，将色彩 × 质感 × 明暗独立组合，
-提供外观选择入口、即时预览、浏览器偏好保存，并为当前项目设置独立 storagePrefix。
-将质感适配到背景、侧栏、大卡片、小卡片、输入框和按钮；iOS 玻璃最透，极光玻璃半透。
-保留业务功能和状态色，遵循现有项目的布局与交互约定。
-如果技术栈不是 React，保留配色、CSS 变量和设计规范，用当前框架实现等价组件。
-
-完成后验证明暗切换、刷新保留、手机布局、文字对比度和大小卡片的质感层次，
-提供实际页面截图、修改清单和运行方法；复用代码时保留 GPL-3.0-only 许可要求。
+请按 Sunny UI 2.0 完成当前界面。
+先读取 AGENTS.md、skills/sunny-ui-design/SKILL.md 及其设计规范与接入说明。
+唯一视觉基准是 assets/appearance/preview.css 和 presets.ts，源于指定 MediaIndex 预览 HTML。
+不要引用或恢复 Sunny UI 1.x 的配色、材质、字体、圆角与布局规则。
+保留当前业务功能，使用设计稿的组件样式，检查桌面、窄屏、外观持久化和键盘操作。
 ```
 
-### 先给我风格选项
-
-```text
-参考 https://github.com/xudong7587/sunny-ui-design-system 的设计规范、示例图和可复用代码，
-先了解我的项目，给我 4～6 个明显不同的前端风格选项，让我指定后再实施。
-
-每个选项写清：配色名称和 ID、质感名称和 ID、明暗模式、适合的内容、
-大卡片／小卡片／控件的表现，并给一小块实际预览或注明对应的仓库示例图。
-至少包括明亮玻璃、半透流光、暖色纸页和一个清晰克制的方案，主色不要都选紫色。
-可参考：马卡龙 macaron + iOS 玻璃 glass；北境极光 nord + 极光玻璃 aurora；
-蜂蜜麦田 honey + 纸页档案 paper；晴蓝 blue + 精致描边 outline。
-
-我选定方案后，读取仓库 skill 和集成说明，复用主题模块接入现有项目，
-保留业务行为，完成桌面、手机及明暗模式验收。
-```
-
-也可把 `skills/sunny-ui-design` 整个目录复制到你的技能目录。代码与详细参考都在该目录内，复制后仍能使用。
-
-## 许可
-
-GPL-3.0-only。代码源自 [MediaIndex](https://github.com/xudong7587/media-index)，保留其许可。第三方参考只用于设计思路，不附带其源码或完整 Skill；使用时遵循对应项目许可。
+代码使用 GPL-3.0-only，详见 [来源与许可](docs/sources.md)。

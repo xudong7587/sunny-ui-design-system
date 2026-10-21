@@ -1,0 +1,27 @@
+{
+  "source": "MediaIndex-UI-Preview/index.html",
+  "captured": "2026-10-21",
+  "htmlSha256": "2ac38c01d8b269973aef8784bc1ae9e2788b544c66b73637f3108e107005da30",
+  "cssSha256": "68be78a4117c003b1ba9ef7b9354a2de9c2787304035694a40f0d370f6ac7c60",
+  "materialCount": 16,
+  "singleCount": 10,
+  "multiCount": 16,
+  "corners": [
+    {
+      "id": "tight",
+      "name": "紧致",
+      "scale": 0.42
+    },
+    {
+      "id": "default",
+      "name": "标准",
+      "scale": 1
+    },
+    {
+      "id": "round",
+      "name": "圆润",
+      "scale": 1.9
+    }
+  ],
+  "policy": "The complete style block is copied verbatim. React adapters may change mechanics, never the visual tokens."
+}

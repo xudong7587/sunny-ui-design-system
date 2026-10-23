@@ -1,5 +1,7 @@
 # Sunny UI 2.0 接入说明
 
+2.1 玻璃扩展：完整复制目录时带上 liquid-glass.ts/css、LiquidGlass.tsx 和对应NOTICE/LICENSE。原有 configureAppearance 会自动增强玻璃导航/弹层；显式组件和独立网页入口见[玻璃接入](liquid-glass.md)。基础接入和下方存储契约保持不变。
+
 ## 文件与职责
 
 完整复制 assets/appearance/：preview.css 是原稿全部样式，presets.ts 是生成的预设，appearance.css 仅适配原生 popover 位置，AppearancePicker.tsx 负责 React 行为。安装 react、react-dom 和 @phosphor-icons/react。

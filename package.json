@@ -1,6 +1,6 @@
 {
   "name": "@xudong7587/sunny-ui-design-system",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "license": "GPL-3.0-only",
@@ -15,7 +15,12 @@
       "types": "./dist-types/src/index.d.ts",
       "import": "./dist/sunny-ui.js"
     },
-    "./styles.css": "./dist/appearance.css"
+    "./styles.css": "./dist/appearance.css",
+    "./liquid-glass.css": "./skills/sunny-ui-design/assets/appearance/liquid-glass.css",
+    "./liquid-glass": {
+      "types": "./dist-types/skills/sunny-ui-design/assets/appearance/liquid-glass.d.ts",
+      "import": "./dist/liquid-glass.js"
+    }
   },
   "files": [
     "dist",

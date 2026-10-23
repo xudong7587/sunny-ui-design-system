@@ -1,6 +1,7 @@
 import { Palette, X } from "@phosphor-icons/react";
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { materials, single, multi, corners } from "./presets";
+import { installLiquidGlass } from "./liquid-glass";
 export { materials, single, multi, corners } from "./presets";
 export const accents = [...single, ...multi];
 export type Theme = "light" | "dark";
@@ -8,6 +9,7 @@ export type Material = typeof materials[number]["id"];
 export type Color = typeof accents[number]["id"];
 export type Corner = typeof corners[number]["id"];
 let prefix = "sunny-ui";
+let disposeGlass: (() => void) | undefined;
 const eventName = "sunny-ui:appearance";
 function read(key: string) { try { return localStorage.getItem(`${prefix}-${key}`); } catch { return null; } }
 function save(key: string, value: string) { try { localStorage.setItem(`${prefix}-${key}`, value); } catch { /* Selection still works in this tab. */ } }
@@ -29,6 +31,7 @@ function apply(state: Preferences) {
 export function configureAppearance(options: { storagePrefix?: string } = {}) {
   prefix = options.storagePrefix || "sunny-ui";
   apply(getPreferences());
+  if (typeof document !== "undefined") { disposeGlass?.(); disposeGlass = installLiquidGlass(); }
 }
 function change<K extends keyof Preferences>(key: K, value: Preferences[K]) {
   save(key, value);

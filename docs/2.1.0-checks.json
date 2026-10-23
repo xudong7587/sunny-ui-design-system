@@ -1,0 +1,25 @@
+{
+  "browser": "Microsoft Edge (Chromium)",
+  "concentric": {
+    "outer": 33,
+    "inner": 26,
+    "inset": 7
+  },
+  "realPixelRefractionMeanDifference": 11.73,
+  "foregroundCrisp": true,
+  "liveDom": true,
+  "dialogUndimmed": true,
+  "cornerCap": 24,
+  "persistence": true,
+  "crossTab": true,
+  "widths": [
+    320,
+    390,
+    700,
+    1440
+  ],
+  "forcedColors": true,
+  "idleFrameLoop": false,
+  "simulatedOtherEngineFallback": true,
+  "errors": []
+}

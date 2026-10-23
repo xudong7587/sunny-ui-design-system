@@ -6,3 +6,4 @@ dist-types/
 .env*
 *.tgz
 *.zip
+.local-tests/

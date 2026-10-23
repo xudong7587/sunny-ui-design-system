@@ -3,7 +3,9 @@ name: sunny-ui-design
 description: 按 Sunny UI 2.0 的 MediaIndex 新预览样式设计 React 页面或接入四维外观系统，复用原稿配色、材质、布局与控件；适用于明确希望复用 Sunny UI 风格的任务。
 ---
 
-# Sunny UI Design · 2.0
+# Sunny UI Design · 2.1
+
+2026-10-23 用户授权新增 SunnyTV 液态玻璃，独立实现见 assets/appearance/liquid-glass.css/ts、LiquidGlass.tsx。基础预设和生成CSS保持原稿；仅玻璃导航、指定弹层和显式组件使用扩展。内层聚焦和磨砂阅读面必须以外框实际半径减去间距，保持同心；不压暗弹窗外侧。网页按浏览器能力回退，不要求 Android 版本。
 
 唯一视觉基准为用户指定的 MediaIndex-UI-Preview/index.html。其完整样式和预设已提取到 assets/appearance/preview.css 与 presets.ts。旧版 Sunny UI 设计规则全部弃用，不能混用或恢复。
 

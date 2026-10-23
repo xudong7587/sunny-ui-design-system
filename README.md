@@ -1,10 +1,12 @@
-# Sunny UI · 2.0.0
+# Sunny UI · 2.1.0
 
-**以 MediaIndex 新设计稿为唯一视觉基准的设计系统。** 旧设计规范与外观样式已弃用。16 种质感、10 个单色、16 组多色、浅深模式和 3 档圆角，全部来自用户指定的 `MediaIndex-UI-Preview/index.html`。
+以 MediaIndex 新设计稿为基础，2.1 新增从 SunnyTV 移植的液态玻璃。原有16种质感、配色、明暗与圆角目录保留；玻璃导航和弹窗增加真实背景折射，文字与图标独立绘制。
+
+2.1 的玻璃是用户授权的设计扩展，单独放在 `liquid-glass.css/ts`，没有改写生成的 `preview.css` 和 `presets.ts`。内层聚焦面按外框实际圆角减去间距计算，保持同心；弹窗外侧不压暗。见[玻璃接入](docs/LIQUID-GLASS.md)和[2.1验证记录](docs/2.1.0-validation.md)。
 
 [设计规范](skills/sunny-ui-design/references/design-standard.md) · [接入说明](skills/sunny-ui-design/references/integration.md) · [AI 设计 Skill](skills/sunny-ui-design/SKILL.md) · [验证记录](docs/2.0.0-validation.md) · [版本变化](CHANGELOG.md)
 
-[下载 v2.0.0 安装包](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v2.0.0/xudong7587-sunny-ui-design-system-2.0.0.tgz) · [下载 v2.0.0 设计 Skill](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v2.0.0/sunny-ui-design-skill-2.0.0.zip)
+2.1.0 下载：[安装包](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v2.1.0/xudong7587-sunny-ui-design-system-2.1.0.tgz) · [设计 Skill](https://github.com/xudong7587/sunny-ui-design-system/releases/download/v2.1.0/sunny-ui-design-skill-2.1.0.zip) · [发行说明](https://github.com/xudong7587/sunny-ui-design-system/releases/tag/v2.1.0)。安装包通过 GitHub 分发，尚未发布到 npm。
 
 ## 新设计规范
 
@@ -78,7 +80,7 @@ function Toolbar() {
 
 ## 唯一设计来源
 
-`preview.css` 是指定 HTML 的完整 style 内容，逐字提取，`presets.ts` 是其中的材质、配色与圆角目录。React 只负责选择、保存、同步与弹层开关，不另造视觉规则。
+`preview.css` 是指定 HTML 的完整 style 内容，逐字提取，`presets.ts` 是其中的材质、配色与圆角目录。2.1 的玻璃扩展单独维护，不回写生成文件；其他材质遵循原稿。
 
 [来源指纹](docs/design-source.json) 记录输入与 CSS 的 SHA-256。更新已确认设计稿后运行：
 

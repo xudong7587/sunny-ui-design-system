@@ -1,5 +1,7 @@
 # Sunny UI 2.0 设计规范
 
+2.1 用户授权例外：SunnyTV 玻璃扩展独立于原稿，glass/frosted/aurora 的指定导航/弹层及显式 LiquidGlass 组件使用真实背景滤镜。内外圆角保持同心，前景清晰，弹窗外侧不压暗。其余材质继续按下文原稿规则，禁止改动生成文件冒充原稿更新。
+
 ## 唯一依据
 
 本规范只总结用户指定的 MediaIndex-UI-Preview/index.html。原始样式位于 ../assets/appearance/preview.css，预设位于 presets.ts。**旧 Sunny UI 规范全部弃用**。文字总结与 CSS 不一致时，以原稿实际 CSS 层叠结果为准，不能补入旧版偏好。
